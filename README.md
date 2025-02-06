@@ -159,6 +159,7 @@
 ---
 
 ### file structure
+```
 affordable-housing-finder/
 │── index.html              # Main landing page
 │── about.html              # About page
@@ -214,3 +215,4 @@ affordable-housing-finder/
 │   ├── users.json           # Sample user data
 │
 └── README.md                # Project documentation
+```
