@@ -1,0 +1,36 @@
+name: kudil_flutter_ui
+description: "A new Flutter project."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.6 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.2
+  font_awesome_flutter: ^10.6.0
+  responsive_builder: ^0.7.0
+  flutter_animate: ^4.5.0
+  google_fonts: ^6.1.0
+  flutter_svg: ^2.0.9
+  intl: ^0.19.0
+  fl_chart: ^0.63.0
+  photo_view: ^0.14.0
+  cached_network_image: ^3.3.0
+  shared_preferences: ^2.2.2
+  flutter_gen: ^4.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  
+  assets:
+    - assets/icons/
+    - assets/images/kudil.png
+    - assets/images/placeholder_house.jpg
