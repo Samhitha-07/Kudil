@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Requirements - Kudil</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/post-requirements.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.html">
+                <div class="brand-logo">
+                    <i class="fas fa-home"></i>
+                    <span class="brand-text">kudil</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Quick Action Buttons -->
+                <div class="quick-actions ms-auto me-4">
+                    <a href="listings.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>View Listings</span>
+                    </a>
+                    <a href="financial-support.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <span>Financial Support</span>
+                    </a>
+                    <a href="saved-listings.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-heart"></i>
+                        <span>Saved Listings</span>
+                    </a>
+                    <a href="community.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-users"></i>
+                        <span>Community</span>
+                    </a>
+                    <a href="messages.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-comments"></i>
+                        <span>Messages</span>
+                        <span class="message-badge">3</span>
+                    </a>
+                </div>
+                <!-- User Profile -->
+                <div class="user-profile">
+                    <div class="dropdown">
+                        <button class="profile-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="avatar-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="user-info">
+                                <span class="user-name">John Doe</span>
+                                <span class="user-role">Home Seeker</span>
+                            </div>
+                            <i class="fas fa-chevron-down ms-2"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end profile-menu">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user"></i>
+                                    <span>Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    <span>My Requirements</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-bell"></i>
+                                    <span>Notifications</span>
+                                    <span class="notification-badge">5</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cog"></i>
+                                    <span>Settings</span>
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item text-danger" href="#">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="requirements-container">
+        <h1 class="page-title">Post Your Requirements</h1>
+        <form id="requirementsForm">
+            <!-- Location Section -->
+            <div class="form-section">
+                <h3 class="form-section-title">Location Preferences</h3>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Desired Locations</label>
+                    <input type="text" class="form-control" id="location" placeholder="Type a location and press Enter">
+                    <div class="location-tags" id="locationTags"></div>
+                </div>
+            </div>
+
+            <!-- Property Details Section -->
+            <div class="form-section">
+                <h3 class="form-section-title">Property Details</h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="propertyType" class="form-label">Property Type</label>
+                        <select class="form-select" id="propertyType" required>
+                            <option value="">Select Property Type</option>
+                            <option value="Apartment">Apartment</option>
+                            <option value="Independent House">Independent House</option>
+                            <option value="Villa">Villa</option>
+                            <option value="Studio">Studio Apartment</option>
+                            <option value="PG/Hostel">PG/Hostel</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="bedroomCount" class="form-label">Number of Bedrooms</label>
+                        <select class="form-select" id="bedroomCount" required>
+                            <option value="">Select Bedrooms</option>
+                            <option value="1">1 BHK</option>
+                            <option value="2">2 BHK</option>
+                            <option value="3">3 BHK</option>
+                            <option value="4">4+ BHK</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Budget Section -->
+            <div class="form-section">
+                <h3 class="form-section-title">Budget</h3>
+                <div class="price-range-container">
+                    <div class="price-inputs">
+                        <div class="price-input">
+                            <label for="minPrice" class="form-label">Minimum (₹)</label>
+                            <input type="number" class="form-control" id="minPrice" placeholder="Min Price" required>
+                        </div>
+                        <div class="price-input">
+                            <label for="maxPrice" class="form-label">Maximum (₹)</label>
+                            <input type="number" class="form-control" id="maxPrice" placeholder="Max Price" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Amenities Section -->
+            <div class="form-section">
+                <h3 class="form-section-title">Desired Amenities</h3>
+                <div class="amenities-grid">
+                    <div class="feature-checkbox">
+                        <input type="checkbox" id="parking" value="Parking">
+                        <label for="parking">Parking</label>
+                    </div>
+                    <div class="feature-checkbox">
+                        <input type="checkbox" id="gym" value="Gym">
+                        <label for="gym">Gym</label>
+                    </div>
+                    <div class="feature-checkbox">
+                        <input type="checkbox" id="pool" value="Swimming Pool">
+                        <label for="pool">Swimming Pool</label>
+                    </div>
+                    <div class="feature-checkbox">
+                        <input type="checkbox" id="security" value="24/7 Security">
+                        <label for="security">24/7 Security</label>
+                    </div>
+                    <div class="feature-checkbox">
+                        <input type="checkbox" id="powerBackup" value="Power Backup">
+                        <label for="powerBackup">Power Backup</label>
+                    </div>
+                    <div class="feature-checkbox">
+                        <input type="checkbox" id="lift" value="Lift">
+                        <label for="lift">Lift</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sustainability Features Section -->
+            <div class="form-section">
+                <h3 class="form-section-title">Sustainability Features</h3>
+                <div class="sustainability-grid">
+                    <div class="feature-checkbox">
+                        <input type="checkbox" id="solarPanels" value="Solar Panels">
+                        <label for="solarPanels">Solar Panels</label>
+                    </div>
+                    <div class="feature-checkbox">
+                        <input type="checkbox" id="rainwaterHarvesting" value="Rainwater Harvesting">
+                        <label for="rainwaterHarvesting">Rainwater Harvesting</label>
+                    </div>
+                    <div class="feature-checkbox">
+                        <input type="checkbox" id="wasteManagement" value="Waste Management">
+                        <label for="wasteManagement">Waste Management</label>
+                    </div>
+                    <div class="feature-checkbox">
+                        <input type="checkbox" id="organicGarden" value="Organic Garden">
+                        <label for="organicGarden">Organic Garden</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Notes Section -->
+            <div class="form-section">
+                <h3 class="form-section-title">Additional Notes</h3>
+                <div class="mb-3">
+                    <textarea class="form-control" id="additionalNotes" rows="4" 
+                              placeholder="Any specific requirements or preferences..."></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> Post Requirement
+            </button>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5>About Kudil</h5>
+                    <p>Empowering sustainable living through innovative housing solutions.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h6>Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Services</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h6>Resources</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Terms</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4 mb-4">
+                    <h6>Newsletter</h6>
+                    <p>Stay updated with our latest news and offers.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Enter your email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p class="copyright">
+                    &copy; 2025 Kudil. Made with <i class="fas fa-heart heart-icon"></i> in India
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Confirmation Message -->
+    <div class="confirmation-message" style="display: none;">
+        <div class="alert alert-success">
+            <i class="fas fa-check-circle"></i> Your requirements have been posted successfully!
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="../../js/post-requirements.js"></script>
+</body>
+</html>

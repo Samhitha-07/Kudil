@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kudil - Property Listings</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../../css/styles.css">
+    <link rel="stylesheet" href="../../css/listings.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.html">
+                <div class="brand-logo">
+                    <i class="fas fa-home"></i>
+                    <span class="brand-text">kudil</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Quick Action Buttons -->
+                <div class="quick-actions ms-auto me-4">
+                    <a href="listings.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>View Listings</span>
+                    </a>
+                    <a href="financial-support.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <span>Financial Support</span>
+                    </a>
+                    <a href="saved-listings.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-heart"></i>
+                        <span>Saved Listings</span>
+                    </a>
+                    <a href="community.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-users"></i>
+                        <span>Community</span>
+                    </a>
+                    <a href="messages.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-comments"></i>
+                        <span>Messages</span>
+                        <span class="message-badge">3</span>
+                    </a>
+                </div>
+                <!-- User Profile -->
+                <div class="user-profile">
+                    <div class="dropdown">
+                        <button class="profile-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="avatar-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="user-info">
+                                <span class="user-name">John Doe</span>
+                                <span class="user-role">Home Seeker</span>
+                            </div>
+                            <i class="fas fa-chevron-down ms-2"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end profile-menu">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user"></i>
+                                    <span>Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    <span>My Requirements</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-bell"></i>
+                                    <span>Notifications</span>
+                                    <span class="notification-badge">5</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cog"></i>
+                                    <span>Settings</span>
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item text-danger" href="#">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+   <!-- Main Content -->
+   <div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Filters Sidebar -->
+            <div class="col-lg-3 filters-sidebar">
+                <!-- Mobile Toggle -->
+                <button class="d-lg-none w-100 btn btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#filtersCollapse">
+                    <i class="fas fa-filter me-2"></i> Show Filters
+                </button>
+                
+                <div class="collapse d-lg-block" id="filtersCollapse">
+                    <div class="filters-container">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h4 class="mb-0">Filters</h4>
+                            <button type="button" class="btn btn-link text-muted p-0" onclick="clearFilters()">
+                                <i class="fas fa-undo-alt me-1"></i> Clear All
+                            </button>
+                        </div>
+
+                        <form id="filterForm">
+                            <!-- Location Search -->
+                            <div class="filter-section">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#locationCollapse">
+                                            Location
+                                        </button>
+                                    </h2>
+                                    <div id="locationCollapse" class="accordion-collapse collapse show">
+                                        <div class="accordion-body">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" id="locationSearch" placeholder="Search cities, neighborhoods...">
+                                                <button class="btn btn-outline-primary" type="button">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                            <div id="locationSuggestions" class="location-suggestions"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Property Type -->
+                            <div class="filter-section">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#propertyTypeCollapse">
+                                            Property Type
+                                        </button>
+                                    </h2>
+                                    <div id="propertyTypeCollapse" class="accordion-collapse collapse show">
+                                        <div class="accordion-body">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="apartment" id="typeApartment">
+                                                <label class="form-check-label" for="typeApartment">
+                                                    <i class="fas fa-building me-2"></i>Apartment
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="house" id="typeHouse">
+                                                <label class="form-check-label" for="typeHouse">
+                                                    <i class="fas fa-home me-2"></i>House
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="villa" id="typeVilla">
+                                                <label class="form-check-label" for="typeVilla">
+                                                    <i class="fas fa-hotel me-2"></i>Villa
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="pg" id="typePG">
+                                                <label class="form-check-label" for="typePG">
+                                                    <i class="fas fa-users me-2"></i>PG/Shared Room
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Price Range -->
+                            <div class="filter-section">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#priceCollapse">
+                                            Price Range
+                                        </button>
+                                    </h2>
+                                    <div id="priceCollapse" class="accordion-collapse collapse show">
+                                        <div class="accordion-body">
+                                            <div class="price-slider">
+                                                <div id="priceRangeSlider"></div>
+                                                <div class="row mt-3">
+                                                    <div class="col-6">
+                                                        <label class="form-label">Min</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text">₹</span>
+                                                            <input type="number" class="form-control" id="minPrice" placeholder="0">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-6">
+                                                        <label class="form-label">Max</label>
+                                                        <div class="input-group">
+                                                            <span class="input-group-text">₹</span>
+                                                            <input type="number" class="form-control" id="maxPrice" placeholder="Any">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Sustainability Features -->
+                            <div class="filter-section">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#sustainabilityCollapse">
+                                            Sustainability Features
+                                        </button>
+                                    </h2>
+                                    <div id="sustainabilityCollapse" class="accordion-collapse collapse show">
+                                        <div class="accordion-body">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="solar" id="featureSolar">
+                                                <label class="form-check-label" for="featureSolar">
+                                                    <i class="fas fa-solar-panel me-2"></i>Solar Panels
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="rainwater" id="featureRainwater">
+                                                <label class="form-check-label" for="featureRainwater">
+                                                    <i class="fas fa-tint me-2"></i>Rainwater Harvesting
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="green" id="featureGreen">
+                                                <label class="form-check-label" for="featureGreen">
+                                                    <i class="fas fa-certificate me-2"></i>Green Building Certification
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="energy" id="featureEnergy">
+                                                <label class="form-check-label" for="featureEnergy">
+                                                    <i class="fas fa-bolt me-2"></i>Energy-Efficient Appliances
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Availability -->
+                            <div class="filter-section">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#availabilityCollapse">
+                                            Availability
+                                        </button>
+                                    </h2>
+                                    <div id="availabilityCollapse" class="accordion-collapse collapse show">
+                                        <div class="accordion-body">
+                                            <select class="form-select" id="availability">
+                                                <option value="">Any Time</option>
+                                                <option value="now">Available Now</option>
+                                                <option value="1month">Within 1 Month</option>
+                                                <option value="2months">Within 2 Months</option>
+                                                <option value="3months">3+ Months</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Property Status -->
+                            <div class="filter-section">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#statusCollapse">
+                                            Property Status
+                                        </button>
+                                    </h2>
+                                    <div id="statusCollapse" class="accordion-collapse collapse show">
+                                        <div class="accordion-body">
+                                            <div class="btn-group w-100" role="group">
+                                                <input type="radio" class="btn-check" name="propertyStatus" id="statusRent" value="rent" checked>
+                                                <label class="btn btn-outline-primary" for="statusRent">Rent</label>
+                                                <input type="radio" class="btn-check" name="propertyStatus" id="statusBuy" value="buy">
+                                                <label class="btn btn-outline-primary" for="statusBuy">Buy</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Apply Filters Button -->
+                            <button type="submit" class="btn btn-primary w-100 mt-3">
+                                <i class="fas fa-filter me-2"></i>Apply Filters
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Map and Listings -->
+            <div class="col-lg-9">
+                <!-- Sort Options -->
+                <div class="sort-options mb-3">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap">
+                        <div class="d-flex align-items-center mb-2 mb-sm-0">
+                            <h4 class="mb-0 me-3">Property Listings</h4>
+                            <div id="totalResults" class="text-muted">
+                                <span class="result-count">0</span> properties found
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <div class="view-toggle me-3">
+                                <div class="btn-group" role="group">
+                                    <button type="button" class="btn btn-outline-primary active" data-view="grid">
+                                        <i class="fas fa-th-large"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-outline-primary" data-view="map">
+                                        <i class="fas fa-map-marked-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="sort-dropdown">
+                                <select class="form-select" id="sortOptions">
+                                    <option value="relevance">Relevance</option>
+                                    <option value="price_asc">Price: Low to High</option>
+                                    <option value="price_desc">Price: High to Low</option>
+                                    <option value="date_desc">Newest First</option>
+                                    <option value="date_asc">Oldest First</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Map View -->
+                <div class="map-container mb-4" id="mapView">
+                    <div id="propertyMap"></div>
+                </div>
+
+                <!-- Listings Grid -->
+                <div class="listings-grid" id="gridView">
+                    <div class="row" id="listingsContainer">
+                        <!-- Luxury Apartment -->
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="property-card">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&auto=format&fit=crop&q=80" alt="Luxury Apartment in Anna Nagar" class="property-image">
+                                    <span class="property-status status-rent">For Rent</span>
+                                    <div class="property-badges">
+                                        <span class="badge bg-success"><i class="fas fa-leaf"></i> Eco-friendly</span>
+                                        <span class="badge bg-primary"><i class="fas fa-star"></i> Premium</span>
+                                    </div>
+                                </div>
+                                <div class="property-content">
+                                    <h3 class="property-title">Luxury Apartment in Anna Nagar</h3>
+                                    <p class="property-location"><i class="fas fa-map-marker-alt"></i> Anna Nagar, Chennai</p>
+                                    <div class="property-features">
+                                        <span><i class="fas fa-bed"></i> 3 Beds</span>
+                                        <span><i class="fas fa-bath"></i> 2 Baths</span>
+                                        <span><i class="fas fa-vector-square"></i> 1,500 sq.ft</span>
+                                    </div>
+                                    <div class="property-footer">
+                                        <div class="property-price">₹45,000<span>/month</span></div>
+                                        <button class="btn btn-outline-primary btn-sm"><i class="fas fa-heart"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modern Villa -->
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="property-card">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&auto=format&fit=crop&q=80" alt="Modern Villa in Velachery" class="property-image">
+                                    <span class="property-status status-sale">For Sale</span>
+                                    <div class="property-badges">
+                                        <span class="badge bg-success"><i class="fas fa-solar-panel"></i> Solar Powered</span>
+                                    </div>
+                                </div>
+                                <div class="property-content">
+                                    <h3 class="property-title">Modern Villa in Velachery</h3>
+                                    <p class="property-location"><i class="fas fa-map-marker-alt"></i> Velachery, Chennai</p>
+                                    <div class="property-features">
+                                        <span><i class="fas fa-bed"></i> 4 Beds</span>
+                                        <span><i class="fas fa-bath"></i> 3 Baths</span>
+                                        <span><i class="fas fa-vector-square"></i> 2,200 sq.ft</span>
+                                    </div>
+                                    <div class="property-footer">
+                                        <div class="property-price">₹1.8 Cr<span> Only</span></div>
+                                        <button class="btn btn-outline-primary btn-sm"><i class="fas fa-heart"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Smart Apartment -->
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="property-card">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&auto=format&fit=crop&q=80" alt="Smart Apartment in OMR" class="property-image">
+                                    <span class="property-status status-rent">For Rent</span>
+                                    <div class="property-badges">
+                                        <span class="badge bg-info"><i class="fas fa-robot"></i> Smart Home</span>
+                                    </div>
+                                </div>
+                                <div class="property-content">
+                                    <h3 class="property-title">Smart Apartment in OMR</h3>
+                                    <p class="property-location"><i class="fas fa-map-marker-alt"></i> OMR, Chennai</p>
+                                    <div class="property-features">
+                                        <span><i class="fas fa-bed"></i> 2 Beds</span>
+                                        <span><i class="fas fa-bath"></i> 2 Baths</span>
+                                        <span><i class="fas fa-vector-square"></i> 1,200 sq.ft</span>
+                                    </div>
+                                    <div class="property-footer">
+                                        <div class="property-price">₹35,000<span>/month</span></div>
+                                        <button class="btn btn-outline-primary btn-sm"><i class="fas fa-heart"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Eco Garden Apartment -->
+                        <div class="col-md-6 col-lg-4 mb-4">
+                            <div class="property-card">
+                                <div class="position-relative">
+                                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&auto=format&fit=crop&q=80" alt="Eco Garden Apartment" class="property-image">
+                                    <span class="property-status status-rent">For Rent</span>
+                                    <div class="property-badges">
+                                        <span class="badge bg-success"><i class="fas fa-seedling"></i> Garden View</span>
+                                        <span class="badge bg-warning"><i class="fas fa-sun"></i> Solar Heated</span>
+                                    </div>
+                                </div>
+                                <div class="property-content">
+                                    <h3 class="property-title">Eco Garden Apartment</h3>
+                                    <p class="property-location"><i class="fas fa-map-marker-alt"></i> Adyar, Chennai</p>
+                                    <div class="property-features">
+                                        <span><i class="fas fa-bed"></i> 3 Beds</span>
+                                        <span><i class="fas fa-bath"></i> 2 Baths</span>
+                                        <span><i class="fas fa-vector-square"></i> 1,800 sq.ft</span>
+                                    </div>
+                                    <div class="property-footer">
+                                        <div class="property-price">₹52,000<span>/month</span></div>
+                                        <button class="btn btn-outline-primary btn-sm"><i class="fas fa-heart"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<!-- Chatbot Widget -->
+<div class="chatbot-widget">
+    <button class="chatbot-toggle" onclick="toggleChatbot()">
+        <i class="fas fa-comments"></i>
+        <span class="badge bg-danger notification-badge">1</span>
+    </button>
+    
+    <div id="chatbotContainer" class="chatbot-container">
+        <div class="chatbot-header">
+            <div>
+                <h5 class="mb-0">Kudil Assistant</h5>
+                <small>We typically reply in a few minutes</small>
+            </div>
+            <button type="button" class="btn-close" onclick="toggleChatbot()"></button>
+        </div>
+        
+        <div id="chatbotMessages" class="chatbot-messages"></div>
+        
+        <div class="chatbot-input">
+            <input type="text" class="form-control" id="chatbotInput" placeholder="Type your message...">
+            <button class="btn btn-primary" onclick="sendMessage()">
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 mb-4 mb-md-0">
+                <h5>About Kudil</h5>
+                <p class="text-muted">Kudil is your trusted partner in finding sustainable and eco-friendly homes. We're committed to making sustainable living accessible to everyone.</p>
+                <div class="social-links mt-3">
+                    <a href="#" class="me-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="me-2"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            
+            <div class="col-md-2 col-6 mb-4 mb-md-0">
+                <h6>Quick Links</h6>
+                <ul class="list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-md-2 col-6 mb-4 mb-md-0">
+                <h6>Resources</h6>
+                <ul class="list-unstyled">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Community</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                </ul>
+            </div>
+            
+            <div class="col-md-4">
+                <h6>Newsletter</h6>
+                <p class="text-muted">Subscribe to get the latest updates on sustainable living.</p>
+                <div class="input-group mb-3">
+                    <input type="email" class="form-control" placeholder="Enter your email">
+                    <button class="btn btn-primary" type="button">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        
+        <hr>
+        
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="copyright mb-0">
+                    2025 Kudil. Made with <i class="fas fa-heart heart-icon"></i> in India
+                </p>
+            </div>
+            <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                <ul class="list-inline mb-0">
+                    <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+                    <li class="list-inline-item">•</li>
+                    <li class="list-inline-item"><a href="#">Terms of Use</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Required Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/nouislider@14.6.3/distribute/nouislider.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places"></script>
+<script src="../../js/listings.js"></script>
+<script src="../../js/chatbot.js"></script>
+</body>
+</html>

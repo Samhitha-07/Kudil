@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Details - Kudil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="../../css/listing-details.css">
+</head>
+<body>
+    <!-- Header/Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-white">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.html">
+                <div class="brand-logo">
+                    <i class="fas fa-home"></i>
+                    <span class="brand-text">kudil</span>
+                </div>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Quick Action Buttons -->
+                <div class="quick-actions ms-auto me-4">
+                    <a href="listings.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <span>View Listings</span>
+                    </a>
+                    <a href="financial-support.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-hand-holding-heart"></i>
+                        <span>Financial Support</span>
+                    </a>
+                    <a href="saved-listings.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-heart"></i>
+                        <span>Saved Listings</span>
+                    </a>
+                    <a href="community.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-users"></i>
+                        <span>Community</span>
+                    </a>
+                    <a href="messages.html" class="btn btn-outline-primary quick-action-btn">
+                        <i class="fas fa-comments"></i>
+                        <span>Messages</span>
+                        <span class="message-badge">3</span>
+                    </a>
+                </div>
+                <!-- User Profile -->
+                <div class="user-profile">
+                    <div class="dropdown">
+                        <button class="profile-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="avatar-icon">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="user-info">
+                                <span class="user-name">John Doe</span>
+                                <span class="user-role">Home Seeker</span>
+                            </div>
+                            <i class="fas fa-chevron-down ms-2"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end profile-menu">
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user"></i>
+                                    <span>Edit Profile</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-clipboard-list"></i>
+                                    <span>My Requirements</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-bell"></i>
+                                    <span>Notifications</span>
+                                    <span class="notification-badge">5</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cog"></i>
+                                    <span>Settings</span>
+                                </a>
+                            </li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <a class="dropdown-item text-danger" href="#">
+                                    <i class="fas fa-sign-out-alt"></i>
+                                    <span>Logout</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <!-- Property Gallery -->
+            <div class="property-gallery">
+                <div class="gallery-main">
+                    <img src="../../assets/images/property1.jpg" alt="Property Main Image" id="mainImage">
+                    <button class="gallery-nav prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="gallery-nav next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="gallery-thumbnails">
+                    <!-- Thumbnails will be dynamically populated -->
+                </div>
+            </div>
+
+            <!-- Property Details Section -->
+            <div class="property-details-container">
+                <!-- Quick Actions -->
+                <div class="quick-action-buttons">
+                    <button class="btn btn-success btn-lg" id="interestedBtn">
+                        <i class="fas fa-hand-paper"></i> I'm Interested!
+                    </button>
+                    <button class="btn btn-outline-success btn-lg" id="saveListingBtn">
+                        <i class="fas fa-heart"></i> Save Listing
+                    </button>
+                    <button class="btn btn-outline-success btn-lg" id="messageOwnerBtn">
+                        <i class="fas fa-comments"></i> DM Owner
+                    </button>
+                    <button class="btn btn-outline-success btn-lg" id="scheduleVisitBtn">
+                        <i class="fas fa-calendar-alt"></i> Schedule Visit
+                    </button>
+                </div>
+
+                <!-- Property Info -->
+                <div class="property-info">
+                    <div class="main-info">
+                        <div class="property-meta">
+                            <span class="property-type">Luxury Apartment</span>
+                            <span class="property-status available">Available Now</span>
+                        </div>
+                        <h1 class="property-title">Modern 3BHK Apartment in Koramangala</h1>
+                        <div class="property-price">
+                            ₹35,000<span>/month</span>
+                            <div class="price-details">
+                                <span class="deposit">Security Deposit: ₹1,05,000 (3 months)</span>
+                                <span class="maintenance">Maintenance: ₹3,500/month</span>
+                            </div>
+                        </div>
+                        <div class="property-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123, 5th Block, Koramangala, Bangalore - 560034</span>
+                        </div>
+                    </div>
+
+                    <!-- Key Features -->
+                    <div class="key-features">
+                        <div class="feature">
+                            <i class="fas fa-building"></i>
+                            <div class="feature-details">
+                                <span class="feature-label">Property Type</span>
+                                <span class="feature-value">Apartment</span>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-bed"></i>
+                            <div class="feature-details">
+                                <span class="feature-label">Bedrooms</span>
+                                <span class="feature-value">3 Bedrooms</span>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-bath"></i>
+                            <div class="feature-details">
+                                <span class="feature-label">Bathrooms</span>
+                                <span class="feature-value">2 Bathrooms</span>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-vector-square"></i>
+                            <div class="feature-details">
+                                <span class="feature-label">Area</span>
+                                <span class="feature-value">1800 sq ft</span>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-couch"></i>
+                            <div class="feature-details">
+                                <span class="feature-label">Furnishing</span>
+                                <span class="feature-value">Semi-Furnished</span>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-calendar-check"></i>
+                            <div class="feature-details">
+                                <span class="feature-label">Available From</span>
+                                <span class="feature-value">Immediate</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sustainability Features -->
+                    <div class="sustainability-section">
+                        <h2>Sustainability Features</h2>
+                        <div class="sustainability-features">
+                            <div class="sustainability-feature">
+                                <i class="fas fa-solar-panel"></i>
+                                <span>Solar Power</span>
+                                <p>24x7 solar power backup system</p>
+                            </div>
+                            <div class="sustainability-feature">
+                                <i class="fas fa-water"></i>
+                                <span>Rainwater Harvesting</span>
+                                <p>Efficient rainwater collection system</p>
+                            </div>
+                            <div class="sustainability-feature">
+                                <i class="fas fa-recycle"></i>
+                                <span>Waste Management</span>
+                                <p>Segregated waste collection</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Detailed Description -->
+                    <div class="description-section">
+                        <h2>About this Property</h2>
+                        <div class="description-content">
+                            <p>This beautiful 3BHK apartment is located in the heart of Koramangala, offering modern amenities and sustainable living features. The apartment is well-ventilated and receives ample natural light throughout the day.</p>
+                            <div class="amenities">
+                                <h3>Amenities</h3>
+                                <ul class="amenities-list">
+                                    <li><i class="fas fa-dumbbell"></i> Gym</li>
+                                    <li><i class="fas fa-swimming-pool"></i> Swimming Pool</li>
+                                    <li><i class="fas fa-user-shield"></i> 24/7 Security</li>
+                                    <li><i class="fas fa-gamepad"></i> Club House</li>
+                                    <li><i class="fas fa-child"></i> Children's Play Area</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location Section -->
+                    <div class="location-section">
+                        <h3>Location</h3>
+                        <div id="propertyMap" class="property-map"></div>
+                        <div class="nearby-places mt-4">
+                            <h4>Nearby Places</h4>
+                            <ul class="places-list">
+                                <li><i class="fas fa-subway"></i> Metro Station (0.5 km)</li>
+                                <li><i class="fas fa-shopping-cart"></i> Supermarket (0.3 km)</li>
+                                <li><i class="fas fa-hospital"></i> Hospital (1.2 km)</li>
+                                <li><i class="fas fa-utensils"></i> Restaurants (0.2 km)</li>
+                                <li><i class="fas fa-graduation-cap"></i> Schools (0.8 km)</li>
+                                <li><i class="fas fa-bus"></i> Bus Stop (0.1 km)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Owner Section -->
+                    <div class="owner-section">
+                        <h3>Property Owner</h3>
+                        <div class="owner-card">
+                            <div class="owner-avatar-wrapper">
+                                <img src="../../assets/images/owner-avatar.jpg" alt="Property Owner" class="owner-avatar">
+                                <span class="verified-badge" title="Verified Owner">
+                                    <i class="fas fa-check-circle"></i>
+                                </span>
+                            </div>
+                            <div class="owner-info">
+                                <div class="owner-header">
+                                    <h4>John Doe</h4>
+                                    <span class="owner-badge">Premium Owner</span>
+                                </div>
+                                <div class="owner-rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                    <span>4.5 (32 reviews)</span>
+                                </div>
+                                <div class="owner-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">15</span>
+                                        <span class="stat-label">Properties</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">98%</span>
+                                        <span class="stat-label">Response Rate</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">2hrs</span>
+                                        <span class="stat-label">Avg. Response</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="owner-actions">
+                                <button class="btn btn-outline-success view-profile-btn">
+                                    <i class="fas fa-user"></i> View Profile
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Guidelines Section -->
+                    <div class="guidelines-section">
+                        <h3>Renting Guidelines</h3>
+                        <div class="guidelines-content">
+                            <div class="guideline-item">
+                                <i class="fas fa-file-alt"></i>
+                                <div class="guideline-text">
+                                    <h4>Documentation Required</h4>
+                                    <p>Valid ID proof, Income proof, Employment letter</p>
+                                </div>
+                            </div>
+                            <div class="guideline-item">
+                                <i class="fas fa-money-check-alt"></i>
+                                <div class="guideline-text">
+                                    <h4>Payment Terms</h4>
+                                    <p>3 months security deposit, Monthly rent in advance</p>
+                                </div>
+                            </div>
+                            <div class="guideline-item">
+                                <i class="fas fa-file-signature"></i>
+                                <div class="guideline-text">
+                                    <h4>Agreement Duration</h4>
+                                    <p>Minimum 11 months, 2 months notice period</p>
+                                </div>
+                            </div>
+                            <div class="guideline-item">
+                                <i class="fas fa-users"></i>
+                                <div class="guideline-text">
+                                    <h4>Tenant Preferences</h4>
+                                    <p>Family, Working professionals, No pets allowed</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Report Section -->
+                    <div class="report-section">
+                        <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#reportListingModal">
+                            <i class="fas fa-flag"></i> Report Listing
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Report Listing Modal -->
+        <div class="modal fade" id="reportListingModal" tabindex="-1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Report Listing</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="reportForm">
+                            <div class="mb-3">
+                                <label class="form-label">Reason for reporting</label>
+                                <select class="form-select" required>
+                                    <option value="">Select a reason</option>
+                                    <option value="incorrect_info">Incorrect Information</option>
+                                    <option value="unavailable">Property Not Available</option>
+                                    <option value="spam">Spam or Misleading</option>
+                                    <option value="duplicate">Duplicate Listing</option>
+                                    <option value="scam">Potential Scam</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Additional Details</label>
+                                <textarea class="form-control" rows="4" placeholder="Please provide more details about the issue..."></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" id="submitReport">Submit Report</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chatbot Component -->
+        <div class="chatbot-widget" id="kudilChatbot">
+            <div class="chatbot-toggle">
+                <i class="fas fa-comments"></i>
+            </div>
+            <div class="chatbot-container">
+                <div class="chatbot-header">
+                    <h5>Kudil Assistant</h5>
+                    <button class="btn-close"></button>
+                </div>
+                <div class="chatbot-messages">
+                    <div class="message bot">
+                        <div class="message-content">
+                            <p>👋 Hi! I'm your Kudil Assistant. How can I help you with this property?</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="chatbot-input">
+                    <input type="text" placeholder="Type your message...">
+                    <button class="send-btn">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <h5>About Kudil</h5>
+                        <p>Kudil is your trusted partner in finding sustainable and eco-friendly homes. We connect conscious home seekers with environmentally responsible property owners.</p>
+                    </div>
+                    <div class="col-lg-2 col-md-6">
+                        <h6>Quick Links</h6>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Properties</a></li>
+                            <li><a href="#">Community</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h6>Contact Us</h6>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-envelope"></i> support@kudil.com</li>
+                            <li><i class="fas fa-phone"></i> +91 123 456 7890</li>
+                            <li><i class="fas fa-map-marker-alt"></i> Bangalore, India</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <h6>Follow Us</h6>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="copyright"> 2025 Kudil. Made with <i class="fas fa-heart heart-icon"></i> in India</p>
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Google Maps Script -->
+        <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
+
+    <!-- Schedule Visit Modal -->
+    <div class="modal fade" id="scheduleVisitModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Schedule a Visit</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="visitRequestForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Select Date</label>
+                                    <input type="text" class="form-control" id="visitDate" required>
+                                    <div class="form-text">Select a date within the next 30 days</div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Available Time Slots</label>
+                                    <div class="time-slots">
+                                        <div class="time-slot-group morning">
+                                            <h6>Morning</h6>
+                                            <div class="slots">
+                                                <label class="time-slot">
+                                                    <input type="radio" name="timeSlot" value="09:00">
+                                                    <span>9:00 AM</span>
+                                                </label>
+                                                <label class="time-slot">
+                                                    <input type="radio" name="timeSlot" value="10:00">
+                                                    <span>10:00 AM</span>
+                                                </label>
+                                                <label class="time-slot">
+                                                    <input type="radio" name="timeSlot" value="11:00">
+                                                    <span>11:00 AM</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="time-slot-group afternoon">
+                                            <h6>Afternoon</h6>
+                                            <div class="slots">
+                                                <label class="time-slot">
+                                                    <input type="radio" name="timeSlot" value="14:00">
+                                                    <span>2:00 PM</span>
+                                                </label>
+                                                <label class="time-slot">
+                                                    <input type="radio" name="timeSlot" value="15:00">
+                                                    <span>3:00 PM</span>
+                                                </label>
+                                                <label class="time-slot">
+                                                    <input type="radio" name="timeSlot" value="16:00">
+                                                    <span>4:00 PM</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Additional Notes</label>
+                            <textarea class="form-control" rows="3" placeholder="Any specific requirements or questions?"></textarea>
+                        </div>
+                        <div class="visit-confirmation" style="display: none;">
+                            <div class="alert alert-success">
+                                <h5><i class="fas fa-check-circle"></i> Visit Request Sent!</h5>
+                                <p>We've sent your request to the property owner. You'll receive a confirmation once they approve the visit.</p>
+                                <div class="visit-details">
+                                    <p><strong>Date:</strong> <span class="confirmed-date"></span></p>
+                                    <p><strong>Time:</strong> <span class="confirmed-time"></span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" id="submitVisitRequest">Request Visit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Report Listing Modal -->
+    <div class="modal fade" id="reportListingModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Report Listing</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Reason for Reporting</label>
+                        <select class="form-select">
+                            <option>Incorrect Information</option>
+                            <option>Fraudulent Listing</option>
+                            <option>Already Rented Out</option>
+                            <option>Inappropriate Content</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Additional Details</label>
+                        <textarea class="form-control" rows="4" placeholder="Please provide more details about your concern"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="submitReport">Submit Report</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
+    <script src="../../js/listing-details.js"></script>
+</body>
+</html>
